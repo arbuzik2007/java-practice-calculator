@@ -1,4 +1,4 @@
-import java.io.File;
+import java.io.*;
 import java.util.Scanner;
 
 public class FileSystem {
@@ -14,5 +14,16 @@ public class FileSystem {
             System.out.println(ex.getMessage());
         }
         return null;
+    }
+    static void WriteFile(String result, String outputDir){
+
+        try(FileOutputStream fos=new FileOutputStream(outputDir);
+            PrintStream printStream = new PrintStream(fos))
+        {
+            printStream.println(result);
+            System.out.println("Запись в файл произведена");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
