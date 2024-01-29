@@ -30,7 +30,13 @@ public class FileSystem {
         }
     }
     static void WriteFile(String[] results, String outputDir){
-
+        try {
+            File f = new File(outputDir);
+            f.createNewFile();
+        }catch (IOException e)
+        {
+            System.out.println(e.getMessage());
+        }
         try(FileOutputStream fos=new FileOutputStream(outputDir);
             PrintStream printStream = new PrintStream(fos))
         {
