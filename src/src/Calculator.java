@@ -1,6 +1,6 @@
 public class Calculator {
-    static double Calculate(String... args) {
-        double result = -1;
+    static String Calculate(String[] args) {
+        double result;
         try {
             double a = Double.parseDouble(args[0]);
             double b = Double.parseDouble(args[2]);
@@ -20,15 +20,14 @@ public class Calculator {
                     result = a / b;
                     break;
                 default:
-                    System.out.println("Operation Error!");
-                    break;
+                    return ("Operation Error!");
             }
         }catch (NumberFormatException ex) {
-            System.out.println("Error! Not number");
+            return ("Error! Not number");
         }
         catch (ArithmeticException ex) {
-            System.out.println("Error! Division by zero");
+            return ("Error! Division by zero");
         }
-        return result;
+        return Double.toString(result);
     }
 }

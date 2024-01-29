@@ -1,19 +1,21 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        //"a <операция> b",
+        //"a <operation> b",
         String fileName = "input.txt";
         String[] input;
         input = FileSystem.ReadFile(fileName);
         if(input == null)
         {
+            //console input variant
             Scanner sc = new Scanner(System.in);
             input = sc.nextLine().split(" ");
         }
-        double res = Calculator.Calculate(input);
-        System.out.print(res != -1 ? res : "");
-        if(res != -1)
-            FileSystem.WriteFile(Double.toString(res),"output.txt");
+        ArrayList<String> results = new ArrayList<>();
+        for(var item: input)
+            results.add(item + " = " + Calculator.Calculate(item.split(" ")));
+        FileSystem.WriteFile(results.toArray(new String[0]),"output.txt");
     }
 }
